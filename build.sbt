@@ -9,13 +9,21 @@ lazy val commonSettings = Seq(
   fork in run := true
 )
 
-lazy val server = (project in file("server")).settings(
-  commonSettings
-)
+lazy val server = (project in file("server"))
+  .settings(
+    commonSettings
+  )
+  .settings(
+    assemblyJarName in assembly := "server.jar"
+  )
 
-lazy val client = (project in file("client")).settings(
-  commonSettings
-)
+lazy val client = (project in file("client"))
+  .settings(
+    commonSettings
+  )
+  .settings(
+    assemblyJarName in assembly := "client.jar",
+  )
 
 lazy val root = (project in file("."))
   .aggregate(server, client)
